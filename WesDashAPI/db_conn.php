@@ -1,7 +1,10 @@
 <?php
-$dsn  = 'mysql:host=localhost;dbname=app-db;charset=utf8mb4';
-$user = 'root';
-$pass = '';
+$dsn  = 'mysql:host=' . getenv('MYSQLHOST') . 
+        ';port=' . getenv('MYSQLPORT') . 
+        ';dbname=' . getenv('MYSQLDATABASE') . 
+        ';charset=utf8mb4';
+$user = getenv('MYSQLUSER');
+$pass = getenv('MYSQLPASSWORD');
 
 $pdo = new PDO($dsn, $user, $pass, [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
