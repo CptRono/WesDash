@@ -2,14 +2,14 @@
 header('Content-Type: application/json');
 session_start();
 
-// 1) DB credentials
-$servername   = "localhost";
-$db_username  = "root";
-$db_password  = "";
-$dbname       = "app-db";
-
 // 2) connect
-$conn = new mysqli($servername, $db_username, $db_password, $dbname);
+$conn = new mysqli(
+    getenv('MYSQLHOST'),
+    getenv('MYSQLUSER'),
+    getenv('MYSQLPASSWORD'),
+    getenv('MYSQLDATABASE'),
+    getenv('MYSQLPORT')
+);
 if ($conn->connect_error) {
     http_response_code(500);
     echo json_encode([

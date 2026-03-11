@@ -48,7 +48,13 @@ if ($errors) {
 }
 
 
-$mysqli = new mysqli('localhost', 'root', '', 'app-db');
+$mysqli = new mysqli(
+    getenv('MYSQLHOST'),
+    getenv('MYSQLUSER'),
+    getenv('MYSQLPASSWORD'),
+    getenv('MYSQLDATABASE'),
+    getenv('MYSQLPORT')
+);
 if ($mysqli->connect_error) {
     http_response_code(201);
     echo json_encode(['success' => false, 'message' => 'DB connection failed']);

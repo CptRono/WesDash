@@ -18,13 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$servername = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "app-db";
-
-// Create database connection with port 3307
-$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname, 3307);
+$conn = new mysqli(
+    getenv('MYSQLHOST'),
+    getenv('MYSQLUSER'),
+    getenv('MYSQLPASSWORD'),
+    getenv('MYSQLDATABASE'),
+    getenv('MYSQLPORT')
+);
 if ($conn->connect_error) {
     echo json_encode(["success" => false, "message" => "Database connection failed: " . $conn->connect_error]);
     exit;

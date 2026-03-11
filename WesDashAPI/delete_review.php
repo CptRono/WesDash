@@ -35,7 +35,13 @@ if (!$data || !isset($data['review_id'])) {
         $taskId = $data['task_id'];
         // For backward compatibility - delete from tasks table
         try {
-            $conn = new mysqli('localhost', 'root', '', 'app-db');
+            $conn = new mysqli(
+                getenv('MYSQLHOST'),
+                getenv('MYSQLUSER'),
+                getenv('MYSQLPASSWORD'),
+                getenv('MYSQLDATABASE'),
+                getenv('MYSQLPORT')
+            );
             if ($conn->connect_error) {
                 throw new Exception("Database connection failed: " . $conn->connect_error);
             }
@@ -86,7 +92,13 @@ $username = $_SESSION['username'];
 
 try {
     // Connect to database
-    $conn = new mysqli('localhost', 'root', '', 'app-db');
+    $conn = new mysqli(
+        getenv('MYSQLHOST'),
+        getenv('MYSQLUSER'),
+        getenv('MYSQLPASSWORD'),
+        getenv('MYSQLDATABASE'),
+        getenv('MYSQLPORT')
+    );
     if ($conn->connect_error) {
         throw new Exception("Database connection failed: " . $conn->connect_error);
     }

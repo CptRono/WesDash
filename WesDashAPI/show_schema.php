@@ -1,5 +1,11 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'app-db');
+$conn = new mysqli(
+    getenv('MYSQLHOST'),
+    getenv('MYSQLUSER'),
+    getenv('MYSQLPASSWORD'),
+    getenv('MYSQLDATABASE'),
+    getenv('MYSQLPORT')
+);
 if ($conn->connect_error) {
     echo 'Connection failed: ' . $conn->connect_error;
     exit;

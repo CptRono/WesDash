@@ -24,12 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 try {
     // Database connection
-    $servername = "localhost";
-    $dbusername = "root";
-    $dbpassword = "";
-    $dbname = "app-db";
-    
-    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+    $conn = new mysqli(
+        getenv('MYSQLHOST'),
+        getenv('MYSQLUSER'),
+        getenv('MYSQLPASSWORD'),
+        getenv('MYSQLDATABASE'),
+        getenv('MYSQLPORT')
+    );
     if ($conn->connect_error) {
         throw new Exception("Database connection failed: " . $conn->connect_error);
     }

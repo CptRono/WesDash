@@ -24,7 +24,13 @@ if (!isset($_SESSION['username'])) {
 $me = $_SESSION['username'];
 
 /* ──────────── 数据库连接 ──────────── */
-$conn = new mysqli('localhost', 'root', '', 'app-db');
+$conn = new mysqli(
+    getenv('MYSQLHOST'),
+    getenv('MYSQLUSER'),
+    getenv('MYSQLPASSWORD'),
+    getenv('MYSQLDATABASE'),
+    getenv('MYSQLPORT')
+);
 if ($conn->connect_error) {
     echo json_encode(['success' => false, 'message' => 'DB connection failed: '.$conn->connect_error]); exit;
 }
