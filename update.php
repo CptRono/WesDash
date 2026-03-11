@@ -8,12 +8,13 @@ if (!isset($_SESSION['username'])) {
 }
 $username = $_SESSION['username'];
 
-$servername = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname     = "app-db";
-
-$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+$conn = new mysqli(
+    getenv('MYSQLHOST'),
+    getenv('MYSQLUSER'),
+    getenv('MYSQLPASSWORD'),
+    getenv('MYSQLDATABASE'),
+    getenv('MYSQLPORT')
+);
 if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }

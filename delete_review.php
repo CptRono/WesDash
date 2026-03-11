@@ -4,13 +4,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Database configuration
-$servername = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "app-db";
-
-// Create a connection
-$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+$conn = new mysqli(
+    getenv('MYSQLHOST'),
+    getenv('MYSQLUSER'),
+    getenv('MYSQLPASSWORD'),
+    getenv('MYSQLDATABASE'),
+    getenv('MYSQLPORT')
+);
 if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }

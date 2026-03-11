@@ -12,12 +12,13 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // 数据库连接
-$servername   = "localhost";
-$db_username  = "root";
-$db_password  = "";
-$dbname       = "app-db";
-
-$conn = new mysqli($servername, $db_username, $db_password, $dbname);
+$conn = new mysqli(
+    getenv('MYSQLHOST'),
+    getenv('MYSQLUSER'),
+    getenv('MYSQLPASSWORD'),
+    getenv('MYSQLDATABASE'),
+    getenv('MYSQLPORT')
+);
 if ($conn->connect_error) {
     http_response_code(500);
     echo json_encode(["success" => false, "message" => "Database connection failed"]);
