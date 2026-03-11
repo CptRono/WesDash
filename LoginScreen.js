@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from './config';
 
 const LoginScreen = () => {
   const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ const LoginScreen = () => {
       //Ada's comment: IMPORTANT!!
       // When testing, please change the 172.21.161.56 to your computer local IP, which
       // can gain by input 'ipconfig getifaddr en0' in to the terminal of your computer
-      const response = await fetch('http://172.21.161.56/WesDashAPI/login.php', {
+      const response = await fetch(`${BASE_URL}/WesDashAPI/login.php`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

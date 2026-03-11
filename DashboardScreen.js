@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Button, StyleSheet,TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { BASE_URL } from './config';
 
 const DashboardScreen = ({ route, navigation }) => {
   const { username, password } = route.params;
@@ -18,7 +19,7 @@ const DashboardScreen = ({ route, navigation }) => {
       }
 
       try {
-        const response = await fetch("http://172.21.161.56/WesDashAPI/delete_user.php", {
+        const response = await fetch(`${BASE_URL}/WesDashAPI/delete_user.php`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ password: passwordToDelete }),

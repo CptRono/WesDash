@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Button, Alert, StyleSheet, Image } from "react-native";
-import { BASE_URL } from './config';
+import { BASE_URL } from '../config';
 
 const CreateStoreRequestScreen = ({ navigation, route }) => {
   // Check if product data was passed from SearchScreen
@@ -35,7 +35,7 @@ const CreateStoreRequestScreen = ({ navigation, route }) => {
         requestData.image_url = productImage;
       }
 
-      const response = await fetch("http://172.21.161.56/WesDashAPI/create_requests.php", {
+      const response = await fetch(`${BASE_URL}/WesDashAPI/create_requests.php`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
