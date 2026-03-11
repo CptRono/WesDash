@@ -12,6 +12,7 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
+import { BASE_URL } from '../config';
 
 /* ─────────────────────────────────────────────────────── */
 const CreateRequestScreen = ({ route, navigation }) => {
@@ -43,7 +44,7 @@ const CreateRequestScreen = ({ route, navigation }) => {
       setSessionID(sid);
 
       try {
-        const resp = await fetch('http://10.0.2.2/WesDashAPI/get_wesshop_items.php', {
+        const resp = await fetch(`${BASE_URL}/WesDashAPI/get_wesshop_items.php`, {
           credentials: 'include',
           headers: { Cookie: `PHPSESSID=${sid}` },
         });
@@ -78,7 +79,7 @@ const CreateRequestScreen = ({ route, navigation }) => {
 
     const proceed = async () => {
       try {
-        const resp = await fetch('http://10.0.2.2/WesDashAPI/create_requests.php', {
+        const resp = await fetch(`${BASE_URL}/WesDashAPI/create_requests.php`, {
           method: 'POST',
           credentials: 'include',
           headers: {

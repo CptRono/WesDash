@@ -6,9 +6,9 @@ import {
   Button,
   FlatList,
   StyleSheet,
-  Platform
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from '../config';
 
 const ChatScreen = ({ route }) => {
   const { roomId, username: paramUser } = route.params;
@@ -19,12 +19,9 @@ const ChatScreen = ({ route }) => {
   const listRef     = useRef(null);
   const [sessionID, setSessionID] = useState(null);
 
-  const HOST = Platform.OS === 'android' ? '10.0.2.2' : 'localhost';
-  const BASE_URL = `http://${HOST}/WesDashAPI`;
-
   const poll = async () => {
     try {
-      const url = `${BASE_URL}/chat.php` +
+      const url = `${BASE_URL}/WesDashAPI/chat.php` +
         `?room_id=${roomId}` +
         `&after=${encodeURIComponent(lastTimeRef.current)}`;
       const resp = await fetch(url);
@@ -60,7 +57,7 @@ const ChatScreen = ({ route }) => {
     listRef.current?.scrollToEnd({ animated: true });
 
     try {
-      const url = `${BASE_URL}/chat.php`;
+      const url = `${BASE_URL}/WesDashAPI/chat.php`;
       console.log('Sending message to:', url);
       const resp = await fetch(url, {
         method: 'POST',

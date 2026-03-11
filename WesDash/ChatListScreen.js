@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
-  Platform
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from '../config';
 
 const ChatListScreen = ({ navigation, route }) => {
   const { username: paramUser, role: paramRole } = route.params ?? {};
@@ -18,12 +18,9 @@ const ChatListScreen = ({ navigation, route }) => {
   const [rooms,     setRooms]     = useState([]);
   const [sessionID, setSessionID] = useState(null);
 
-  const HOST = Platform.OS === 'android' ? '10.0.2.2' : 'localhost';
-  const BASE_URL = `http://${HOST}/WesDashAPI`;
-
   const fetchRooms = async (sid) => {
     try {
-      const url = `${BASE_URL}/list_chats.php?PHPSESSID=${sid}`;
+      const url = `${BASE_URL}/WesDashAPI/list_chats.php?PHPSESSID=${sid}`;
       console.log('Fetching chat rooms from:', url);
       const resp = await fetch(url, { method: 'GET' });
       const data = await resp.json();

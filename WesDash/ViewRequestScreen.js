@@ -9,12 +9,10 @@ import {
   Alert,
   FlatList,
   TouchableOpacity,
-  Platform,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from '../config';
 
-const HOST          = Platform.OS === 'android' ? '10.0.2.2' : 'localhost';
-const BASE_URL      = `http://${HOST}/WesDashAPI`;
 const PRIMARY_COLOR = '#007bff';   
 const STATUS_COLOR  = '#66cc66';   
 const PENDING_COLOR = '#ffcc00';  
@@ -33,7 +31,7 @@ export default function ViewRequestsScreen({ route, navigation }) {
   /* ───── 拉取订单 ───── */
   const fetchRequests = async () => {
     try {
-      const r = await fetch(`${BASE_URL}/accept_requests.php`, {
+      const r = await fetch(`${BASE_URL}/WesDashAPI/accept_requests.php`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -61,7 +59,7 @@ export default function ViewRequestsScreen({ route, navigation }) {
   /* ───── 删除 ───── */
   const doDelete = async (id) => {
     try {
-      const r = await fetch(`${BASE_URL}/accept_requests.php`, {
+      const r = await fetch(`${BASE_URL}/WesDashAPI/accept_requests.php`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
@@ -80,7 +78,7 @@ export default function ViewRequestsScreen({ route, navigation }) {
   /* ───── 保存编辑 ───── */
   const doEdit = async (payload) => {
     try {
-      const r = await fetch(`${BASE_URL}/accept_requests.php`, {
+      const r = await fetch(`${BASE_URL}/WesDashAPI/accept_requests.php`, {
         method: 'PUT',
         credentials: 'include',
         headers: {
@@ -99,7 +97,7 @@ export default function ViewRequestsScreen({ route, navigation }) {
   /* ───── 确认收货 ───── */
   const doConfirm = async (id) => {
     try {
-      const r = await fetch(`${BASE_URL}/accept_requests.php`, {
+      const r = await fetch(`${BASE_URL}/WesDashAPI/accept_requests.php`, {
         method: 'PUT',
         credentials: 'include',
         headers: {

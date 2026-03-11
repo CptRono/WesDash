@@ -7,10 +7,10 @@ import {
   StyleSheet,
   Alert,
   FlatList,
-  Platform,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
+import { BASE_URL } from '../config';
 
 const AcceptOrderScreen = ({ route, navigation }) => {
   const { username = 'Unknown', role = 'user' } = route.params ?? {};
@@ -18,13 +18,10 @@ const AcceptOrderScreen = ({ route, navigation }) => {
   const [orders,     setOrders]  = useState([]);
   const [sessionID,  setSID]     = useState(null);
 
-  const HOST     = Platform.OS === 'android' ? '10.0.2.2' : 'localhost';
-  const BASE_URL = `http://${HOST}/WesDashAPI`;
-
   /* ---------- pull orders ---------- */
   const fetchOrders = async () => {
     try {
-      const resp = await fetch(`${BASE_URL}/accept_order.php`, {
+      const resp = await fetch(`${BASE_URL}/WesDashAPI/accept_order.php`, {
         method: 'GET',
         credentials: 'include',
         headers: { 'Content-Type':'application/json', Cookie:`PHPSESSID=${sessionID}` },
@@ -56,7 +53,7 @@ const AcceptOrderScreen = ({ route, navigation }) => {
   /* ---------- accept ---------- */
   const handleAcceptOrder = async (id) => {
     try {
-      const resp = await fetch(`${BASE_URL}/accept_order.php`, {
+      const resp = await fetch(`${BASE_URL}/WesDashAPI/accept_order.php`, {
         method:'PUT',
         credentials:'include',
         headers:{ 'Content-Type':'application/json' },
@@ -76,7 +73,7 @@ const AcceptOrderScreen = ({ route, navigation }) => {
   /* ---------- drop-off ---------- */
   const handleDropOffOrder = async (id) => {
     try {
-      const resp = await fetch(`${BASE_URL}/accept_order.php`, {
+      const resp = await fetch(`${BASE_URL}/WesDashAPI/accept_order.php`, {
         method:'PUT',
         credentials:'include',
         headers:{ 'Content-Type':'application/json' },

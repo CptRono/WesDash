@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
+import { BASE_URL } from '../config';
 
 export default function CreateReviewScreen({ route, navigation }) {
   const { orderId } = route.params;
@@ -20,7 +21,7 @@ export default function CreateReviewScreen({ route, navigation }) {
     }
 
     try {
-      const response = await fetch('http://10.0.2.2/WesDashAPI/save_review.php', {
+      const response = await fetch(`${BASE_URL}/WesDashAPI/save_review.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ orderId, reviewText, rating }),
@@ -42,7 +43,7 @@ export default function CreateReviewScreen({ route, navigation }) {
 
   const handleCancelReview = async () => {
     try {
-      const response = await fetch('http://10.0.2.2/WesDashAPI/cancel_review_prompt.php', {
+      const response = await fetch(`${BASE_URL}/WesDashAPI/cancel_review_prompt.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ orderId }),

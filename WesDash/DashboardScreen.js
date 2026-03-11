@@ -12,6 +12,7 @@ import {
   TextInput,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from '../config';
 
 const RED      = '#C41E3A';
 const RED_DARK = '#991427';
@@ -36,7 +37,7 @@ export default function DashboardScreen({ route, navigation }) {
       }
 
       try {
-        const response = await fetch('http://10.0.2.2/WesDashAPI/get_pending_review.php', {
+        const response = await fetch(`${BASE_URL}/WesDashAPI/get_pending_review.php`, {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -62,7 +63,7 @@ export default function DashboardScreen({ route, navigation }) {
       return;
     }
     try {
-      const resp = await fetch('http://10.0.2.2/WesDashAPI/delete_user.php', {
+      const resp = await fetch(`${BASE_URL}/WesDashAPI/delete_user.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: passwordToDelete }),

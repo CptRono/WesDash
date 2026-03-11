@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
+import { BASE_URL } from '../config';
 
 export default function CustomOrderScreen({ navigation, route }) {
   const { username = 'Unknown', role = 'user' } = route.params ?? {};
@@ -57,7 +58,7 @@ export default function CustomOrderScreen({ navigation, route }) {
 
     try {
       const sid = await AsyncStorage.getItem('PHPSESSID');
-      const res = await fetch('http://10.0.2.2/WesDashAPI/create_requests.php', {
+      const res = await fetch(`${BASE_URL}/WesDashAPI/create_requests.php`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type':'application/json', Cookie:`PHPSESSID=${sid}` },

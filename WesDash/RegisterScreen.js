@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from '../config';
 
 const RegisterScreen = () => {
   const [username, setUsername] = useState('');
@@ -26,7 +27,7 @@ const RegisterScreen = () => {
     }
 
     try {
-      const response = await fetch('http://10.0.2.2/WesDashAPI/register.php', {
+      const response = await fetch(`${BASE_URL}/WesDashAPI/register.php`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

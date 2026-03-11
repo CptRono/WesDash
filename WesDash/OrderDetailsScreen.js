@@ -5,6 +5,7 @@ import {
   Button, Alert, StyleSheet, ScrollView
 } from 'react-native';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
+import { BASE_URL } from '../config';
 
 export default function OrderDetailsScreen({ navigation, route }) {
   const { cart, username, role } = route.params;
@@ -50,7 +51,7 @@ export default function OrderDetailsScreen({ navigation, route }) {
       est_price: totalPrice
     };
     try {
-      const r = await fetch('http://10.0.2.2/WesDashAPI/create_requests.php',{
+      const r = await fetch(`${BASE_URL}/WesDashAPI/create_requests.php`,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         credentials:'include',

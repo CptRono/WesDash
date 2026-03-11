@@ -3,6 +3,7 @@ import {
   View, Text, TextInput, Button, StyleSheet, FlatList,
   ActivityIndicator, Image, Alert, TouchableOpacity
 } from 'react-native';
+import { BASE_URL } from '../config';
 
 export default function SearchScreen({ navigation, route }) {
   const { username, role } = route.params || {};
@@ -17,7 +18,7 @@ export default function SearchScreen({ navigation, route }) {
     if (!query.trim()) return;
     setLoading(true);
     try {
-      const url = `http://10.0.2.2/WesDashAPI/products.php?term=${encodeURIComponent(
+      const url = `${BASE_URL}/WesDashAPI/products.php?term=${encodeURIComponent(
         query
       )}&fulfillment=aisle&locationId=01100002&show=items.price`;
       // print url
