@@ -29,10 +29,6 @@ if (!isset($_SESSION['username'])) {
 }
 
 $username = $_SESSION['username']; // Get the username from the session
-$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-if ($conn->connect_error) {
-    die(json_encode(["success" => false, "message" => "Database connection failed."]));
-}
 
 // Get the username from the session
 $usernameToDelete = $_SESSION['username'];  // This line captures the username from the session
