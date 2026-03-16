@@ -2,6 +2,11 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+echo "HOST: " . getenv('MYSQLHOST') . "<br>";
+echo "PORT: " . getenv('MYSQLPORT') . "<br>";
+echo "DB: " . getenv('MYSQLDATABASE') . "<br>";
+echo "USER: " . getenv('MYSQLUSER') . "<br>";
+
 $dsn  = 'mysql:host=' . getenv('MYSQLHOST') . 
         ';port=' . getenv('MYSQLPORT') . 
         ';dbname=' . getenv('MYSQLDATABASE') . 
