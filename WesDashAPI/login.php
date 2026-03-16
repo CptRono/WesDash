@@ -31,7 +31,7 @@ $mysqli = new mysqli(
     getenv('MYSQLUSER'),
     getenv('MYSQLPASSWORD'),
     getenv('MYSQLDATABASE'),
-    getenv('MYSQLPORT')
+    (int) getenv('MYSQLPORT')
 );
 if ($mysqli->connect_error) {
     http_response_code(500);

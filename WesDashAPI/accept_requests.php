@@ -29,7 +29,7 @@ $conn = new mysqli(
     getenv('MYSQLUSER'),
     getenv('MYSQLPASSWORD'),
     getenv('MYSQLDATABASE'),
-    getenv('MYSQLPORT')
+    (int) getenv('MYSQLPORT')
 );
 if ($conn->connect_error) {
     echo json_encode(['success' => false, 'message' => 'DB connection failed: '.$conn->connect_error]); exit;

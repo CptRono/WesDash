@@ -29,7 +29,7 @@ try {
         getenv('MYSQLUSER'),
         getenv('MYSQLPASSWORD'),
         getenv('MYSQLDATABASE'),
-        getenv('MYSQLPORT')
+        (int) getenv('MYSQLPORT')
     );
     if ($conn->connect_error) {
         throw new Exception("Database connection failed: " . $conn->connect_error);

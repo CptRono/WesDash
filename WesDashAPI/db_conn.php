@@ -1,6 +1,6 @@
 <?php
 $dsn  = 'mysql:host=' . getenv('MYSQLHOST') . 
-        ';port=' . getenv('MYSQLPORT') . 
+        ';port=' . (int) getenv('MYSQLPORT') . 
         ';dbname=' . getenv('MYSQLDATABASE') . 
         ';charset=utf8mb4';
 $user = getenv('MYSQLUSER');
